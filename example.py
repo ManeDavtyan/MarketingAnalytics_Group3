@@ -1,5 +1,5 @@
 
-# db
+# DB
 # from bookstore import db
 # import pandas as pd
 #
@@ -10,12 +10,12 @@
 # orderitem = pd.read_csv(".//data//orderitem.csv")
 # orders = pd.read_csv(".//data//orders.csv")
 # publishers = pd.read_csv(".//data//publishers.csv")
-#
+
 # db.schema.create_database(authors, books, customers, inventory, orderitem, orders, publishers)
-#
 
 
-# api
+
+# API
 # from bookstore.api.api import app
 #
 # if __name__ == "__main__":
@@ -26,6 +26,6 @@
 
 
 
-# model
+# MODEL
 
 # ...
