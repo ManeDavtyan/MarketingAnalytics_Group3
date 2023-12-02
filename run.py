@@ -1,3 +1,4 @@
+# before the model is corrected, run this after commenting model in api/init and bookstore/init
 from bookstore.api.api import app
 
 if __name__ == "__main__":
