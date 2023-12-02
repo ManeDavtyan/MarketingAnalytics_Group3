@@ -1,16 +1,9 @@
-"""
-schema.py
+# schema.py
 
-This module defines the database schema using SQLAlchemy and populates the tables with data from CSV files.
-
-Author: Group 3
-Date: November 17, 2023
-"""
-
+# Import necessary libraries
 import os
 import pandas as pd
-import logging
-from bookstore.db.etl.logger.logger import CustomFormatter
+#from ..logger.logger import CustomFormatter
 from sqlalchemy import create_engine, Column, Integer, String, Float, DATE, ForeignKey
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
@@ -119,36 +112,39 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Read CSV data and populate the database for each table
-def populate_table_from_csv(model, csv_file):
-    """Populates a table in the database with data from a CSV file.
+def populate_table_from_csv(model, data_frame):
+    """Populates a table in the database with data from a DataFrame.
 
     :param model: The SQLAlchemy model representing the table.
     :type model: class
-    :param csv_file: Path to the CSV file containing data.
-    :type csv_file: str
+    :param data_frame: DataFrame containing data.
+    :type data_frame: pd.DataFrame
     :returns: None
 
     """
 
-    df = pd.read_csv(csv_file)
-    records = df.to_dict(orient='records')
+    records = data_frame.to_dict(orient='records')
     session.bulk_insert_mappings(model, records)
     session.commit()
 
-# Define CSV files for each table
-csv_files = {
-    Customers: '../../../../data/customers.csv',
-    Books: '../../../../data/books.csv',
-    Publisher: '../../../../data/publishers.csv',
-    Authors: '../../../../data/authors.csv',
-    Inventory: '../../../../data/inventory.csv',
-    OrderItem: '../../../../data/orderitem.csv',
-    Orders: '../../../../data/orders.csv',
-}
+def create_database(authors, books, customers, inventory, orderitem, orders, publishers):
+    # Define CSV files for each table
+    csv_files = {
+        Customers: customers,
+        Books: books,
+        Publisher: publishers,
+        Authors: authors,
+        Inventory: inventory,
+        OrderItem: orderitem,
+        Orders: orders,
+    }
 
-# Populate tables with data from CSV files
-for model, csv_file in csv_files.items():
-    populate_table_from_csv(model, csv_file)
+    # Populate tables with data from CSV files
+    for model, data_frame in csv_files.items():
+        populate_table_from_csv(model, data_frame)
 
-# Close the session when done
-session.close()
+    # Close the session when done
+    session.close()
+
+# Provide your variables when calling create_database function
+#create_database(authors, books, customers, inventory, orderitem, orders, publishers)
