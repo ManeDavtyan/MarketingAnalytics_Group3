@@ -4,8 +4,16 @@ from sklearn.metrics.pairwise import linear_kernel
 from sklearn.decomposition import TruncatedSVD
 import sqlite3
 
-# Assuming you have already loaded the 'books' DataFrame
-books = pd.read_csv('../../data/books.csv')
+# Connect to the SQLite database
+db_path = './/BookStore.db'
+conn = sqlite3.connect(db_path)
+
+# Assuming you have a table named 'books' in the database
+books_query = "SELECT * FROM books"
+books = pd.read_sql_query(books_query, conn)
+conn.close()
+
+# Preprocess the 'books' DataFrame
 books['content'] = books['title'] + ' ' + books['author_id'].astype(str) + ' ' + books['genre']
 
 # TF-IDF Vectorization
@@ -54,15 +62,11 @@ def get_recommendations(title, books_data):
 
     return result_df
 
-
 # Get user input for the book title
 title_to_recommend = input("Enter a book title: ")
 recommendations = get_recommendations(title_to_recommend, books)
 
-# Define the SQLite database file path
-db_path = 'BookStoreRec.db'
-
-# Connect to the SQLite database
+# Connect to the SQLite database again to save recommendations
 conn = sqlite3.connect(db_path)
 
 # Create a cursor object to execute SQL queries
@@ -94,8 +98,14 @@ if not table_exists:
 
 # Save recommendations to the database
 try:
-    recommendations.to_sql('recommendations', conn, if_exists='append', index=False)
-    print("Recommendations saved to the database.")
+    if not recommendations.empty:
+        # Convert 'author_id' to INTEGER before saving to the database
+        recommendations['author_id'] = recommendations['author_id'].astype(int)
+
+        recommendations.to_sql('recommendations', conn, if_exists='append', index=False)
+        print("Recommendations saved to the database.")
+    else:
+        print("No recommendations to save.")
 except Exception as e:
     print(f"Error saving recommendations to the database: {e}")
 
