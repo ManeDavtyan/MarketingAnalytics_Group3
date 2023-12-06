@@ -1,8 +1,7 @@
-
 import sqlite3
 import pandas as pd
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 from sklearn.decomposition import TruncatedSVD
 
@@ -14,36 +13,51 @@ books_query = "SELECT * FROM books"
 books = pd.read_sql_query(books_query, conn)
 conn.close()
 
-# Preprocess the 'books' DataFrame
-books['content'] = books['title'] + ' ' + books['author_id'].astype(str) + ' ' + books['Genre']
+# Combine titles into a single string
+titles = books['title'].str.lower().str.replace('[^\w\s]', '', regex=True).str.split()
+titles = titles.apply(lambda x: ' '.join(set(x)))  # Keep only unique words in each title
 
-# TF-IDF Vectorization
-tfidf_vectorizer = TfidfVectorizer(stop_words='english')
-tfidf_matrix = tfidf_vectorizer.fit_transform(books['content'])
+# Use Count Vectorizer
+vectorizer = CountVectorizer()
+title_matrix = vectorizer.fit_transform(titles)
 
-# Include the 'rating' as a numerical feature
-rating_matrix = books['Rating'].values.reshape(-1, 1)
+# Compute cosine similarity for titles
+cosine_sim_titles = linear_kernel(title_matrix, title_matrix)
 
-combined_matrix = pd.concat([pd.DataFrame(tfidf_matrix.toarray()), pd.DataFrame(rating_matrix)], axis=1)
-
-svd = TruncatedSVD(n_components=100)
-tfidf_matrix_reduced = svd.fit_transform(tfidf_matrix)
-
-# Compute cosine similarity
-cosine_sim = linear_kernel(tfidf_matrix_reduced, tfidf_matrix_reduced)
-
-def get_recommendations(title, books_data):
+def get_combined_recommendations(title, books_data):
     idx = books_data.loc[books_data['title'] == title].index[0]
-    sim_scores = list(enumerate(cosine_sim[idx]))
-    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-    sim_scores = sim_scores[1:6]  # Get top 5 similar books
-    book_indices = [i[0] for i in sim_scores]
-    recommended_books = books_data.iloc[book_indices].copy()  # Create a copy to avoid modifying the original DataFrame
-    return recommended_books
+
+    # Step 1: Check for title similarity
+    title_sim_scores = list(enumerate(cosine_sim_titles[idx]))
+    title_sim_scores = sorted(title_sim_scores, key=lambda x: x[1], reverse=True)
+
+    # Filter out the input title
+    title_sim_scores = [score for score in title_sim_scores if books_data.iloc[score[0]]['title'] != title]
+
+    # If there are similar titles, recommend based on titles
+    if title_sim_scores:
+        title_indices = [i[0] for i in title_sim_scores[:5]]
+        title_recommendations = books_data.iloc[title_indices].copy()
+        return title_recommendations
+
+    # Step 2: Check for the same author
+    author = books_data.iloc[idx]['author']
+    author_recommendations = books_data[books_data['author'] == author].head(5)
+    if not author_recommendations.empty:
+        return author_recommendations
+
+    # Step 3: Check for the same genre and high rating
+    genre = books_data.iloc[idx]['Genre']
+    high_rated_genre_recommendations = books_data[(books_data['Genre'] == genre) & (books_data['Rating'] >= 4)].head(5)
+    if not high_rated_genre_recommendations.empty:
+        return high_rated_genre_recommendations
+
+    # If no matches found, return an empty DataFrame
+    return pd.DataFrame()
 
 # Get user input for the book title
 title_to_recommend = input("Enter a book title: ")
-recommendations = get_recommendations(title_to_recommend, books)
+recommendations = get_combined_recommendations(title_to_recommend, books)
 
 # Connect to the SQLite database again to save recommendations
 conn = sqlite3.connect(db_path)
@@ -52,8 +66,8 @@ conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
 # Check if the Recommendations table already exists
-check_table_query = "SELECT name FROM sqlite_master WHERE type='table' AND name='recommendations';"
-cursor.execute(check_table_query)
+check_table_query = "SELECT name FROM sqlite_master WHERE type='table' AND name=?;"
+cursor.execute(check_table_query, ('recommendations',))
 table_exists = cursor.fetchone()
 
 # Create the Recommendations table if it doesn't exist
