@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException, Depends, Query
 from pydantic import BaseModel
 from typing import Optional
 import sqlite3
+from bookstore.model.model import get_combined_recommendations
 
 app = FastAPI()
 
@@ -104,3 +105,13 @@ def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
     except sqlite3.Error as e:
         # Handle any potential errors
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+
+
+@app.get("/recommendations/{title}")
+def get_recommendations(title: str, db: sqlite3.Connection = Depends(get_db)):
+    recommendations = get_combined_recommendations(title, db_path)
+
+    if recommendations.empty:
+        raise HTTPException(status_code=404, detail="No recommendations found")
+
+    return recommendations.to_dict(orient="records")
