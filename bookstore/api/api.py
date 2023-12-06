@@ -17,6 +17,8 @@ def get_db():
     db.close()
 
 
+# ... (previous code remains unchanged)
+
 class Book(BaseModel):
     title: Optional[str] = None
     price: Optional[float] = None
@@ -34,6 +36,7 @@ class Book(BaseModel):
 @app.get("/")
 def read_root():
     return {"message": "BookStore API"}
+
 
 @app.get("/books/{title}")
 def get_book(title: str, db: sqlite3.Connection = Depends(get_db)):
@@ -106,3 +109,4 @@ def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
     except sqlite3.Error as e:
         # Handle any potential errors
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+
