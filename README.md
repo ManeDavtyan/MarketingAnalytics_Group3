@@ -2,8 +2,7 @@
 
 ## Problem Statement
 
-This project aims to develop a sophisticated book recommendation system for Armenian book sellers, Bookinist and Zangak. Current challenges include the absence of recommendation systems, leading to reduced customer engagement and a competitive disadvantage. Valuable customer data is underutilized.
-
+This project aims to develop a sophisticated book recommendation system for Armenian book sellers, Bookinisk, Zangak and more. Current challenges include the absence of recommendation systems, leading to reduced customer engagement and a competitive disadvantage. This project is basically about a `bookstore` python package creation, which is an outstanding package, useful for user interaction in book recommendation process. 
 ### Objectives
 
 1. **Recommendation System Development:**
@@ -15,49 +14,50 @@ This project aims to develop a sophisticated book recommendation system for Arme
    - Marketing integration for promotions.
    - Customer feedback integration for continuous improvement.
 
-## Database
+## Data/Database
 
-The project includes a `BookStore` database with 7 tables of CSV files. The main, `books.csv`, was scrapped from Zangak Store's webpage, it includes around 20,000 books' information. The rest of the tables are generated. You can find scraping and generating scripts in the `ipynb` folder.
+The project provides freedom to the user, book store owner, or just a random person, to create a database. Initially, the repository includes `data` folder with 7 csv files that were scrapped and generated. Those files are later used in `example.ipynb` for  `BookStore.db` creation. The user, of course, can specify their own data set, and fill out the database using bookstore.db subpackage. The system works specifically for book stores, that's why initially the database is named as `BookStore.db` and if you run the example.py with the script below, it will create `BookStore.db` in th current working directory. Later on, this data base will be used for recommendation and API Swagger demonstration. Again, the user is free to build the database on his/her own data files, though we initially provide data files scrapped from https://zangakbookstore.am/.  
+
+```{python }
+import pandas as pd
+from bookstore import db
+
+authors = pd.read_csv(".//data//authors.csv")
+books = pd.read_csv(".//data//books.csv")
+customers = pd.read_csv(".//data//customers.csv")
+inventory= pd.read_csv(".//data//inventory.csv")
+orderitem = pd.read_csv(".//data//orderitem.csv")
+orders = pd.read_csv(".//data//orders.csv")
+publishers = pd.read_csv(".//data//publishers.csv")
+
+db.schema.create_database(authors, books, customers, inventory, orderitem, orders, publishers)
+
+```
 
 ## API Interface
 
-FastAPI is used for an intuitive interface allowing customers and bookstore owners to request books, adjust data, or add new books.
+FastAPI is used for an intuitive interface allowing customers and bookstore owners to request books, adjust data, or add new books. Besides GET, POST, PUT methods, the Swagger dashboard also provides another additional GET statement, used for printing recommended books. Basically, bookstore.model subpackage is connected to the bookstore.api subpackage, and while calling the api subpackage, the program automatically call the model subpackage and recommends the books for the customer. You can use the api subpackage by simply running `run.py` file. 
+
+```{python }
+from bookstore.api.api import app
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)
+
+```
 
 ## Models
 
 ### Matrix Factorization Model (model.py)
 
-The `model.py` file implements a recommendation system using matrix factorization. It recommends the best 5 books based on genre and rating.
+The `model.py` file implements a recommendation system using .... The model does can be called outside the package in the following way. (see `example.ipynb`)
 
-#### Usage:
-
-1. **Run the Matrix Factorization Model:**
-   - Execute the `model.py` script to generate book recommendations.
-  
-2. **Database Interaction:**
-   - The script stores the recommendations in a new table called `recommendations` inside the `BookStoreRec` database.
-
-## Getting Started
-
-1. **Clone Repository:**
-
-git clone https://github.com/GorMkrtchyan7/Marketing_Analytics_Group3.git
+```{python}
+#model part
+```
 
 
 
-2. **Install Dependencies:**
-
-pip install -r requirements.txt
-
-
-3. **Database Setup:**
-- Import CSV files into the `BookStore` database.
-
-4. **Run FastAPI Server:**
-- Make sure you are in the directory `bookstore/api`.
-- Run the following script to open the Swagger: `python run.py`.
-- After the code is run, check the terminal. You will find (http://127.0.0.1:8000). Press Ctrl and right-click to open it in the browser.
-- Next to http://127.0.0.1:8000, add http://127.0.0.1:8000/docs and press enter.
-- GET, POST, PUT available for the `books.csv`.
-- There is also the commented part of the code connecting BookStore.db inside apy.py. 
 
