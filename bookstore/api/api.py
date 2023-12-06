@@ -1,5 +1,3 @@
-#Connecting to DB
-
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Depends
 from pydantic import BaseModel
@@ -28,20 +26,14 @@ class Book(BaseModel):
     cover_type: Optional[str] = None
     pages_number: Optional[int] = None
     book_id: int
-
+    author_id: Optional[int] = None
+    publisher_id: Optional[int] = None
+    genre: Optional[str] = None
+    rating: Optional[float] = None
 
 @app.get("/")
 def read_root():
     return {"message": "BookStore API"}
-
-
-# @app.get("/books/")
-# def get_books(db: sqlite3.Connection = Depends(get_db)):
-#     # Fetch data from the database instead of the CSV file
-#     query = "SELECT * FROM books"
-#     books_data = pd.read_sql_query(query, db)
-#     return books_data.to_dict(orient="records")
-
 
 @app.get("/books/{title}")
 def get_book(title: str, db: sqlite3.Connection = Depends(get_db)):
@@ -84,6 +76,7 @@ def update_book(title: str, book: Book, db: sqlite3.Connection = Depends(get_db)
     db.commit()  # Add this line to commit the change
     return {"title": title, **row.to_dict()}
 
+from fastapi import HTTPException
 
 @app.post("/books/", response_model=Book)
 def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
@@ -113,9 +106,3 @@ def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
     except sqlite3.Error as e:
         # Handle any potential errors
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
-
-
-
-
-
-
