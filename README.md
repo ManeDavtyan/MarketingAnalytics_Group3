@@ -52,10 +52,15 @@ if __name__ == "__main__":
 
 ### Matrix Factorization Model (model.py)
 
-The `model.py` file implements a recommendation system using .... The model does can be called outside the package in the following way. (see `example.ipynb`)
+The `model.py` file implements a recommendation system using cosine similarity string distances.  The model does can be called outside the package in the following way. (see `example.ipynb`)
 
 ```{python}
-#model part
+from bookstore.model import model
+db_path = './/BookStore.db'
+title_to_recommend = input("Enter a book title: ")
+recommendations = model.get_combined_recommendations(title_to_recommend, db_path)
+
+print(recommendations)
 ```
 
 
