@@ -55,12 +55,11 @@ def get_book(title: str, db: sqlite3.Connection = Depends(get_db)):
     return matching_books.to_dict(orient="records")
 
 
-
 @app.put("/books/{title}")
 def update_book(title: str, book: Book, db: sqlite3.Connection = Depends(get_db)):
     # Fetch data from the database for the specified title
-    query = f"SELECT * FROM books WHERE title LIKE '%{title}%'"
-    matching_books = pd.read_sql_query(query, db)
+    query = "SELECT * FROM books WHERE title = ?"
+    matching_books = pd.read_sql_query(query, db, params=(title,))
 
     if matching_books.empty:
         raise HTTPException(status_code=404, detail="Book not found")
@@ -74,46 +73,49 @@ def update_book(title: str, book: Book, db: sqlite3.Connection = Depends(get_db)
 
     # Update the row in the database
     update_query = (
-        "UPDATE books SET " +
-        ", ".join([f'{field} = ?' for field in row.index]) +
-        f" WHERE book_id = ?"
+            "UPDATE books SET " +
+            ", ".join([f'{field} = ?' for field in row.index]) +
+            " WHERE book_id = ?"
     )
-    # Pass the values as a tuple, including the book_id
-    values = tuple(row) + (row['book_id'],)
+
+    # Pass the values as a list, including the book_id
+    values = [row[field] for field in row.index] + [row['book_id']]
     db.execute(update_query, values)
     db.commit()  # Add this line to commit the change
     return {"title": title, **row.to_dict()}
 
+
 @app.post("/books/", response_model=Book)
 def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
-    # Get the maximum book_id from the database
-    max_book_id_query = "SELECT MAX(book_id) FROM books"
-    max_book_id = pd.read_sql_query(max_book_id_query, db).iloc[0, 0]
-    new_book_id = max_book_id + 1 if max_book_id is not None else 1
+    try:
+        # Prepare the INSERT query using parameterized values
+        insert_query = (
+            "INSERT INTO books (title, price, isbn, publication_year, language, "
+            "cover_type, pages_number) VALUES (?, ?, ?, ?, ?, ?, ?)"
+        )
 
-    # Set the book_id for the new book
-    book.book_id = new_book_id
+        # Ensure the values match the expected data types
+        values = (
+            book.title,
+            book.price,
+            book.isbn,
+            book.publication_year,
+            book.language,
+            book.cover_type,
+            book.pages_number
+        )
 
-    # Insert the new book into the database
-    # Assuming `values` is a tuple of values to be inserted
-    insert_query = (
-        "INSERT INTO books (book_id, title, price, isbn, publication_year, language, "
-        "\"cover_type\", pages_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-    )
+        # Execute the query with parameterized values
+        db.execute(insert_query, values)
+        db.commit()  # Commit the transaction to the database
 
-    # Ensure the values match the expected data types
-    values = (
-        book.book_id,  # number
-        book.title,  # string
-        book.price,  # number
-        book.isbn,  # string
-        book.publication_year,  # number
-        book.language,  # string
-        book.cover_type,  # string
-        book.pages_number  # number
-    )
+        return book
+    except sqlite3.Error as e:
+        # Handle any potential errors
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
 
-    # Execute the query with parameterized values
-    db.execute(insert_query, values)
 
-    return book
+
+
+
+
