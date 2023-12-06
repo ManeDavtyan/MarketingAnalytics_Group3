@@ -1,5 +1,5 @@
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException, Depends, Query
 from pydantic import BaseModel
 from typing import Optional
 import sqlite3
@@ -15,9 +15,6 @@ def get_db():
     db = sqlite3.connect(db_path)
     yield db
     db.close()
-
-
-# ... (previous code remains unchanged)
 
 class Book(BaseModel):
     title: Optional[str] = None
@@ -53,33 +50,31 @@ def get_book(title: str, db: sqlite3.Connection = Depends(get_db)):
 @app.put("/books/{title}")
 def update_book(title: str, book: Book, db: sqlite3.Connection = Depends(get_db)):
     # Fetch data from the database for the specified title
-    query = "SELECT * FROM books WHERE title = ?"
-    matching_books = pd.read_sql_query(query, db, params=(title,))
+    query = f"SELECT * FROM books WHERE title LIKE '%{title}%'"
+    cursor = db.cursor()
+    cursor.execute(query)
+    matching_books = cursor.fetchall()
 
-    if matching_books.empty:
+    if not matching_books:
         raise HTTPException(status_code=404, detail="Book not found")
 
     # Update the first matching book found (you can modify this logic if needed)
-    row = matching_books.iloc[0].copy()  # Create a copy of the row
+    book_data = book.dict(exclude={"book_id"})  # Exclude book_id as it shouldn't be updated
 
-    for field, value in book.dict(exclude_unset=True).items():
-        if field != "book_id" and value is not None:
-            row[field] = value
+    update_query = f'''
+        UPDATE books
+        SET price = ?
+        WHERE book_id = ?
+    '''
 
-    # Update the row in the database
-    update_query = (
-            "UPDATE books SET " +
-            ", ".join([f'{field} = ?' for field in row.index]) +
-            " WHERE book_id = ?"
-    )
+    # Update the book data in the database
+    update_values = (book_data['price'] , matching_books[0][0])
+    cursor.execute(update_query, update_values)
+    db.commit()
 
-    # Pass the values as a list, including the book_id
-    values = [row[field] for field in row.index] + [row['book_id']]
-    db.execute(update_query, values)
-    db.commit()  # Add this line to commit the change
-    return {"title": title, **row.to_dict()}
+    return {"price": book_data['price']}
 
-from fastapi import HTTPException
+
 
 @app.post("/books/", response_model=Book)
 def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
@@ -109,4 +104,3 @@ def create_book(book: Book, db: sqlite3.Connection = Depends(get_db)):
     except sqlite3.Error as e:
         # Handle any potential errors
         raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
-
