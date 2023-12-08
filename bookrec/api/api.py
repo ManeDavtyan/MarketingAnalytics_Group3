@@ -3,7 +3,8 @@ from fastapi import FastAPI, HTTPException, Depends, Query
 from pydantic import BaseModel
 from typing import Optional
 import sqlite3
-from bookstore.model.model import get_combined_recommendations
+from ..model.model import get_combined_recommendations
+
 
 app = FastAPI()
 

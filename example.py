@@ -1,6 +1,6 @@
 
 # DB
-# from bookstore import db
+# from bookrec import db
 # import pandas as pd
 #
 # authors = pd.read_csv(".//data//authors.csv")
@@ -16,7 +16,7 @@
 
 
 # API
-# from bookstore.api.api import app
+# from bookrec.api.api import app
 #
 # if __name__ == "__main__":
 #     import uvicorn
@@ -28,7 +28,7 @@
 
 # MODEL
 
-# from bookstore.model import model
+# from bookrec.model import model
 # db_path = './/BookStore.db'
 # title_to_recommend = input("Enter a book title: ")
 # recommendations = model.get_combined_recommendations(title_to_recommend, db_path)
