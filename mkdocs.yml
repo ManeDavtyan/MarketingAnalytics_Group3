@@ -1,4 +1,4 @@
-site_name: bookrec Documentation Site
+site_name: bookrecs Documentation Site
 nav:
   - Home: "home.md"
   - Relational Schema: "Relational_Schema.png"

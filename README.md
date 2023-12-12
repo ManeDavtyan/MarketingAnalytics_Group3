@@ -36,10 +36,10 @@ To sum up, developing an intelligent book recommendation system for Bookinist an
 
 ## Data/Database
 
-The project provides freedom to the user, book store owner, or just a random person, to create a database. Initially, the repository includes `data` folder with 7 csv files that were scrapped and generated. Those files (not mandatory) are later used  in `BookStore.db` creation. The user, of course, can specify their own data set, and fill out the database using bookrec.db subpackage. Take a look at the script below, it creates a database using csv files provided and the `bookrec` package. 
+The project provides freedom to the user, book store owner, or just a random person, to create a database. Initially, the repository includes `data` folder with 7 csv files that were scrapped and generated. Those files (not mandatory) are later used  in `BookStore.db` creation. The user, of course, can specify their own data set, and fill out the database using bookrecs.db subpackage. Take a look at the script below, it creates a database using csv files provided and the `bookrecs` package. 
 ```{python}
 import pandas as pd
-from bookrec import db
+from bookrecs import db
 
 authors = pd.read_csv(".//data//authors.csv")
 books = pd.read_csv(".//data//books.csv")
@@ -55,9 +55,9 @@ The system works specifically for book stores, that's why initially the database
 
 ## API Interface
 
-FastAPI package is used for an intuitive interface allowing customers and bookstore owners to request books, adjust data, or add new books. Besides GET, POST, PUT methods, the Swagger dashboard also provides another additional GET statement, used for printing recommended books. Basically, bookrec.model subpackage is connected to the bookrec.api subpackage, and while calling the api subpackage, the program automatically calls the model subpackage and recommends the books for the customer. You can use the api subpackage by simply running `run.py` file, or the script below.
+FastAPI package is used for an intuitive interface allowing customers and bookstore owners to request books, adjust data, or add new books. Besides GET, POST, PUT methods, the Swagger dashboard also provides another additional GET statement, used for printing recommended books. Basically, bookrecs.model subpackage is connected to the bookrecs.api subpackage, and while calling the api subpackage, the program automatically calls the model subpackage and recommends the books for the customer. You can use the api subpackage by simply running `run.py` file, or the script below.
 ```{python}
-from bookrec.api.api import app
+from bookrecs.api.api import app
 
 if __name__ == "__main__":
     import uvicorn
@@ -71,12 +71,12 @@ Make sure you have all packages downloaded in your venv, by installing requireme
 #### Matrix Factorization Model 
 The model subpackage within the package is dedicated to handling the book recommendation aspect. This submodule employs a Matrix Factorization Model and implements a recommendation system based on cosine similarity string distances.
 
-When interacting with the bookrec.model subpackage, users are prompted to provide a book title. If the specified book title exists in the BookStore.db database, the system responds by presenting five new recommended books.
+When interacting with the bookrecs.model subpackage, users are prompted to provide a book title. If the specified book title exists in the BookStore.db database, the system responds by presenting five new recommended books.
 
 To use the recommendation model, the following Python script can be employed:
 
 ```{python}
-from bookrec.model import model
+from bookrecs.model import model
 db_path = './/BookStore.db'
 title_to_recommend = input("Enter a book title: ")
 recommendations = model.get_combined_recommendations(title_to_recommend, db_path)
