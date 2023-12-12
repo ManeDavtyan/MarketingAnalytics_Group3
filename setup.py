@@ -29,7 +29,7 @@ setup(
         'six==1.16.0',
         'sniffio==1.3.0',
         'SQLAlchemy==2.0.23',
-        'starlette==0.33.0',
+        'starlette>=0.27.0,<=0.33.0',
         'threadpoolctl==3.2.0',
         'typing-extensions==4.8.0',
         'tzdata==2023.3',
