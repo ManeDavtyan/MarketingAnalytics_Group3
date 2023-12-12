@@ -1,5 +1,5 @@
 # Book Recommendation Package 
-
+You can host the website of the package via the following link -> https://manedavtyan.github.io/bookrec.github.io/ 
 ## Problem Statement
 
 The main objective of this project is to create an advanced book recommendation system that can be offered to book sellers, such as Bookinist and Zangak, operating in Armenia. Currently, both book sellers lack a comprehensive recommendation system, which hinders their ability to provide tailored book suggestions to customers. The challenges and limitations in this context include:
