@@ -4,11 +4,11 @@ setup(
     author='Mane Davtyan',
     description='BookStore Recommendation System',
     name='bookrec',
-    version='0.1.2',
+    version='0.1.3',
     packages=find_packages(include=['bookrec', 'bookrec.*']),
     install_requires=[
         'annotated-types==0.6.0',
-        'anyio==4.1.0',
+        'anyio<4.0.0 and >=3.7.1',
         'click==8.1.7',
         'exceptiongroup==1.2.0',
         'Faker==20.1.0',
