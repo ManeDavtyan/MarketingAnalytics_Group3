@@ -7544,7 +7544,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookrecs</span> <span class="kn">import</span> <span class="n">db</span>
@@ -7693,7 +7693,7 @@ main {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookrecs.model</span> <span class="kn">import</span> <span class="n">model</span>
@@ -7701,7 +7701,7 @@ main {
 <span class="n">title_to_recommend</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a book title: "</span><span class="p">)</span>
 <span class="n">recommendations</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_combined_recommendations</span><span class="p">(</span><span class="n">title_to_recommend</span><span class="p">,</span> <span class="n">db_path</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">recommendations</span><span class="p">)</span>
+<span class="n">recommendations</span>
 </pre></div>
 </div>
 </div>
@@ -7714,30 +7714,126 @@ main {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 </div>
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>      book_id                                title   price           isbn  \
-96         97                     Թագաւորն ու ծովը  4500.0  9786057469274   
-2937     2938                     Թագաւորն ու ծովը  4500.0  9786057469274   
-8479     8480                     Թագաւորն ու ծովը  4500.0  9786057469274   
-1           2  Աշխարհի պատմությունը 10½ գլուխներով  5990.0  9789939980256   
-2           3                              Ալ տառը  4990.0  9789939980140   
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-      publication_year          language cover_type  pages_number  \
-96              2023.0  Western Armenian       Soft          48.0   
-2937            2023.0  Western Armenian       Soft          48.0   
-8479            2023.0  Western Armenian       Soft          48.0   
-1               2023.0          Armenian       Hard         480.0   
-2               2023.0          Armenian  Ultrathin         280.0   
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
-                genre  rating  author_id  publisher_id inputted_book  
-96          Biography     3.9         80             4     Դառը ծովը  
-2937      Non-Fiction     4.0         80             4     Դառը ծովը  
-8479          History     0.4         80             4     Դառը ծովը  
-1     Science Fiction     2.5          2             2     Դառը ծովը  
-2             Fiction     4.5          3             2     Դառը ծովը  
-</pre>
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>book_id</th>
+<th>title</th>
+<th>price</th>
+<th>isbn</th>
+<th>publication_year</th>
+<th>language</th>
+<th>cover_type</th>
+<th>pages_number</th>
+<th>genre</th>
+<th>rating</th>
+<th>author_id</th>
+<th>publisher_id</th>
+<th>inputted_book</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>1</td>
+<td>Դառը ծովը</td>
+<td>5800.0</td>
+<td>9789939884943</td>
+<td>2023.0</td>
+<td>Armenian</td>
+<td>Hard</td>
+<td>336.0</td>
+<td>Non-Fiction</td>
+<td>0.5</td>
+<td>1</td>
+<td>1</td>
+<td>Թունավոր գրիչով ձեռքը</td>
+</tr>
+<tr>
+<th>1</th>
+<td>2</td>
+<td>Աշխարհի պատմությունը 10½ գլուխներով</td>
+<td>5990.0</td>
+<td>9789939980256</td>
+<td>2023.0</td>
+<td>Armenian</td>
+<td>Hard</td>
+<td>480.0</td>
+<td>Science Fiction</td>
+<td>2.5</td>
+<td>2</td>
+<td>2</td>
+<td>Թունավոր գրիչով ձեռքը</td>
+</tr>
+<tr>
+<th>2</th>
+<td>3</td>
+<td>Ալ տառը</td>
+<td>4990.0</td>
+<td>9789939980140</td>
+<td>2023.0</td>
+<td>Armenian</td>
+<td>Ultrathin</td>
+<td>280.0</td>
+<td>Fiction</td>
+<td>4.5</td>
+<td>3</td>
+<td>2</td>
+<td>Թունավոր գրիչով ձեռքը</td>
+</tr>
+<tr>
+<th>3</th>
+<td>4</td>
+<td>Լուսնաքարը</td>
+<td>5990.0</td>
+<td>9789939980089</td>
+<td>2023.0</td>
+<td>Armenian</td>
+<td>Hard</td>
+<td>656.0</td>
+<td>Non-Fiction</td>
+<td>4.9</td>
+<td>4</td>
+<td>2</td>
+<td>Թունավոր գրիչով ձեռքը</td>
+</tr>
+<tr>
+<th>4</th>
+<td>5</td>
+<td>«Ծիածանը» և ․․․</td>
+<td>8400.0</td>
+<td>9789939113852</td>
+<td>2023.0</td>
+<td>Armenian</td>
+<td>Hard</td>
+<td>168.0</td>
+<td>Romance</td>
+<td>2.2</td>
+<td>5</td>
+<td>3</td>
+<td>Թունավոր գրիչով ձեռքը</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>

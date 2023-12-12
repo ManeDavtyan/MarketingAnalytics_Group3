@@ -1,5 +1,6 @@
 
-# DB
+# uncomment the below code to create DB
+
 # from bookrecs import db
 # import pandas as pd
 #
@@ -14,6 +15,7 @@
 # db.schema.create_database(authors, books, customers, inventory, orderitem, orders, publishers)
 
 
+# uncomment the below code to run API Swagger
 
 # API
 # from bookrecs.api.api import app
@@ -22,16 +24,14 @@
 #     import uvicorn
 #
 #     uvicorn.run(app, host="127.0.0.1", port=8000)
-#
 
 
 
-# MODEL
-
+# uncomment the below code to recommend books
 
 # from bookrecs.model import model
 # db_path = './/BookStore.db'
 # title_to_recommend = input("Enter a book title: ")
 # recommendations = model.get_combined_recommendations(title_to_recommend, db_path)
-#
-# print(recommendations)
+
+# recommendations
