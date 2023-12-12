@@ -4,7 +4,7 @@ setup(
     author='Mane Davtyan',
     description='BookStore Recommendation System',
     name='bookrec',
-    version='0.1.1',
+    version='0.1.2',
     packages=find_packages(include=['bookrec', 'bookrec.*']),
     install_requires=[
         'annotated-types==0.6.0',
