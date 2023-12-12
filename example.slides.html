@@ -48,6 +48,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 .highlight .m { color: var(--jp-mirror-editor-number-color) } /* Literal.Number */
 .highlight .s { color: var(--jp-mirror-editor-string-color) } /* Literal.String */
 .highlight .ow { color: var(--jp-mirror-editor-operator-color); font-weight: bold } /* Operator.Word */
+.highlight .pm { color: var(--jp-mirror-editor-punctuation-color) } /* Punctuation.Marker */
 .highlight .w { color: var(--jp-mirror-editor-variable-color) } /* Text.Whitespace */
 .highlight .mb { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Bin */
 .highlight .mf { color: var(--jp-mirror-editor-number-color) } /* Literal.Number.Float */
@@ -7433,25 +7434,120 @@ main {
 <main>
 <div class="reveal">
 <div class="slides"><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7b61209d-7915-43c5-a30b-c71fbfdcee78">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3a6de454-e1a0-4c0b-9baf-26e51f6d62ac">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="bookstore.db">bookstore.db<a class="anchor-link" href="#bookstore.db">¶</a></h1><p>The script below create a BookStore.db using the data folder's csv files and the <em>bookstore</em> package. You can provide any csv files you have, want, need. As a result, BookStore.db is going to be created, which will later be used in book recomendation process. Data scraping and generating can be done using data_generator.ipynb and/or data_scraping.ipynb files, or whatever data the user wants to utilize.</p>
+<h1 id="DS223---Marketing-Analytics---Group-Project">DS223 - Marketing Analytics - Group Project<a class="anchor-link" href="#DS223---Marketing-Analytics---Group-Project">¶</a></h1><p><code>bookrecs</code> recommendation model</p>
+<p>Group3:</p>
+<ul>
+<li>Mane Davtyan</li>
+<li>Gor Mkrtchyan</li>
+<li>Inna Krmoyan</li>
+<li>Irena Torosyan</li>
+<li>Sona Hakobyan</li>
+</ul>
 </div>
 </div>
 </div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=427eddc2-7899-4d5b-b577-5d57d3b35f94">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c6efbe77-a3a4-403d-8f0a-930b8379c3cd">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h2><p>Enhancing Book Sellers' Capabilities in Armenia</p>
+<p>Developing an advanced book recommendation system for Bookinist/Zangak to address the absence of comprehensive recommendation systems, improve customer engagement, and boost competitiveness in the market.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7d85bdaf-0b39-47cf-97ba-ca3a53e8fee9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Problem-Statement">Problem Statement<a class="anchor-link" href="#Problem-Statement">¶</a></h2><p>Challenges:</p>
+<ul>
+<li>Absence of Recommendation Systems</li>
+<li>Customer Engagement</li>
+<li>Competitiveness</li>
+</ul>
+<p><strong>Current Situation</strong>: Lack of tailored book recommendations affecting sales and customer satisfaction.</p>
+<p><strong>Solution</strong>: Develop an advanced recommendation system to overcome these challenges.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=4a4e9bfa-2b97-4ef4-841b-e29bdba60e2a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Project-Objectives">Project Objectives<a class="anchor-link" href="#Project-Objectives">¶</a></h2><p>Primary Objective: Develop an advanced recommendation system for Bookinist and Zangak.</p>
+<p><strong>Key Steps</strong>:</p>
+<ul>
+<li>Data Gathering/Generation</li>
+<li>Data Analysis</li>
+<li>Characterizing Books Based on Various Features</li>
+<li>Model Selection</li>
+<li>API Development</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1d8e7f0e-70c7-46d1-a312-c3de03a5e8a8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Data/Database">Data/Database<a class="anchor-link" href="#Data/Database">¶</a></h2><p><strong>Data Utilization</strong>: Freedom to create a customized database.</p>
+<p><strong>Script Example</strong>: Demonstrates how to create a database using CSV files.</p>
+<p><strong>Flexibility</strong>: Users can use their own data sets for database creation.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=47b0427c-24c8-4d96-acd9-60365c5cfcc8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="bookrecs.db">bookrecs.db<a class="anchor-link" href="#bookrecs.db">¶</a></h3><p>The script below create a BookStore.db using the data folder's csv files and the bookstore package. You can provide any csv files you have, want, need. As a result, BookStore.db is going to be created, which will later be used in book recomendation process. Data scraping and generating can be done using data_generator.ipynb and/or data_scraping.ipynb files, or whatever data the user wants to utilize</p>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=86a856f8-b365-44e3-84ff-4db001d9350e">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookstore</span> <span class="kn">import</span> <span class="n">db</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#pip install bookrecs==1.1.3</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=ee0a0490-49e6-4c1a-932a-080a962b9110">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookrecs</span> <span class="kn">import</span> <span class="n">db</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">authors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">".//data//authors.csv"</span><span class="p">)</span>
@@ -7469,18 +7565,56 @@ main {
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=937e9893-746c-4bae-b4f9-5bbcd14c7c98">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e192a8a4-6b10-449d-8a67-d7e8afb25527">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="bookstore.api">bookstore.api<a class="anchor-link" href="#bookstore.api">¶</a></h1><p>The following subpackage of our main, bookstore, package, is responsible for API development and representation. By the script below, you can connect to the BookStore.db created above, and open the Swagger to later use it. The Swagger includes GET, POST, PUT and GET (for recommendation) methods. By using them you can get any book's info by title, update the book's price by providing the title, and even creating a new book. The Swagger also gives opportunity for the user to get live book recommendation based on his/her inputted book title.</p>
+<h2 id="API-Interface">API Interface<a class="anchor-link" href="#API-Interface">¶</a></h2><p><strong>API Package</strong>: Intuitive interface for customers and bookstore owners.</p>
+<p><strong>Methods</strong>:</p>
+<ul>
+<li>GET is for retrieving data.</li>
+<li>PUT is for updating or creating a resource.</li>
+<li>POST is for submitting data to create a new resource.</li>
+</ul>
+<p><strong>Integration</strong>: API seamlessly connected to the recommendation model for real-time book suggestions.</p>
+<p><strong>Swagger Dashboard</strong>: Provides a user-friendly environment for easy interaction with the API.</p>
 </div>
 </div>
 </div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7baf4c28-802c-4174-88af-8dfd0da0cfbe">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c8396067-b19c-4f89-9fda-38ce430bee61">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="bookrecs.api">bookrecs.api<a class="anchor-link" href="#bookrecs.api">¶</a></h3><p>The following subpackage of our main, bookstore, package, is responsible for API development and representation. By the script below, you can connect to the BookStore.db created above, and open the Swagger to later use it. The Swagger includes GET, POST, PUT and GET (for recommendation) methods. By using them you can get any book's info by title, update the book's price by providing the title, and even creating a new book. The Swagger also gives opportunity for the user to get live book recommendation based on his/her inputted book title.</p>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=1f93376e-2bfd-4de5-90ae-6c0818fd2678">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookrecs.api.api</span> <span class="kn">import</span> <span class="n">app</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">uvicorn</span>
+
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div></section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=398f323b-8b3d-45c6-85aa-98480393640a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7497,45 +7631,72 @@ main {
 </div>
 </div>
 </div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=20e11ec6-c379-43e3-96db-653ca6e691e3">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookstore.api.api</span> <span class="kn">import</span> <span class="n">app</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">uvicorn</span>
-
-    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 </div></section></section><section><section>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1e0f815-cd11-4fb7-a318-89268340476b">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=81602652-f010-478e-9b00-6792b0ec51b2">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="bookstore.model">bookstore.model<a class="anchor-link" href="#bookstore.model">¶</a></h1><p>The model subpackage is responsible for book recommendation. Using the cosine similarities of vectorized tokens, it makes sure that each inserted book gets 5 book recommendations. The model subpackage has a connection to api connection also, since the Swagger has GET recommendation, which works directly with the model subpackage. This gives the user an opportunity to interactively recieve book recommendations by just interting the title of desired book.</p>
+<h2 id="Model---Matrix-Factorization">Model - Matrix Factorization<a class="anchor-link" href="#Model---Matrix-Factorization">¶</a></h2><p><strong>Techniques Used</strong>:</p>
+<ul>
+<li>Cosine Similarity for Titles</li>
+<li>Author Matching</li>
+<li>Genre and High Rating Matching</li>
+</ul>
 </div>
 </div>
 </div>
-</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=331a054f-1161-4a27-a272-3b9a4fbe7c64">
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=5ed9fa46-3626-471a-af7b-eea74959d039">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Functionality</strong>:</p>
+<ul>
+<li>Takes a book title as input</li>
+<li>Utilizes SQLite database to fetch book data</li>
+<li>Recommends five new books based on:<ul>
+<li>Similar Titles</li>
+<li>Same Author</li>
+<li>Same Genre and High Rating</li>
+</ul>
+</li>
+</ul>
+<p><strong>User Interaction</strong>:</p>
+<ul>
+<li>Users input a book title, and the system responds with five recommended books based on:<ul>
+<li>Similar Titles</li>
+<li>Same Author</li>
+<li>Same Genre and High Rating</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=ea51b5e8-94ea-468c-a189-54ff82d4687b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="bookrecs.model">bookrecs.model<a class="anchor-link" href="#bookrecs.model">¶</a></h3><p>The model subpackage is responsible for book recommendation. Using the cosine similarities of vectorized tokens, it makes sure that each inserted book gets 5 book recommendations. The model subpackage has a connection to api connection also, since the Swagger has GET recommendation, which works directly with the model subpackage. This gives the user an opportunity to interactively recieve book recommendations by just interting the title of desired book.</p>
+</div>
+</div>
+</div>
+</div></section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=195cb874-7920-46e8-844f-c94232db58ef">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookstore.model</span> <span class="kn">import</span> <span class="n">model</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">bookrecs.model</span> <span class="kn">import</span> <span class="n">model</span>
 <span class="n">db_path</span> <span class="o">=</span> <span class="s1">'.//BookStore.db'</span>
 <span class="n">title_to_recommend</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">"Enter a book title: "</span><span class="p">)</span>
 <span class="n">recommendations</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_combined_recommendations</span><span class="p">(</span><span class="n">title_to_recommend</span><span class="p">,</span> <span class="n">db_path</span><span class="p">)</span>
@@ -7543,6 +7704,90 @@ main {
 <span class="nb">print</span><span class="p">(</span><span class="n">recommendations</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>      book_id                                title   price           isbn  \
+96         97                     Թագաւորն ու ծովը  4500.0  9786057469274   
+2937     2938                     Թագաւորն ու ծովը  4500.0  9786057469274   
+8479     8480                     Թագաւորն ու ծովը  4500.0  9786057469274   
+1           2  Աշխարհի պատմությունը 10½ գլուխներով  5990.0  9789939980256   
+2           3                              Ալ տառը  4990.0  9789939980140   
+
+      publication_year          language cover_type  pages_number  \
+96              2023.0  Western Armenian       Soft          48.0   
+2937            2023.0  Western Armenian       Soft          48.0   
+8479            2023.0  Western Armenian       Soft          48.0   
+1               2023.0          Armenian       Hard         480.0   
+2               2023.0          Armenian  Ultrathin         280.0   
+
+                genre  rating  author_id  publisher_id inputted_book  
+96          Biography     3.9         80             4     Դառը ծովը  
+2937      Non-Fiction     4.0         80             4     Դառը ծովը  
+8479          History     0.4         80             4     Դառը ծովը  
+1     Science Fiction     2.5          2             2     Դառը ծովը  
+2             Fiction     4.5          3             2     Դառը ծովը  
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=b0e20f55-ad97-4dff-aac0-aaf96f4d7144">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Goals">Goals<a class="anchor-link" href="#Goals">¶</a></h2><p><strong>Marketing Integration</strong>: Integrate the recommendation system into Bookinist's and Zangak's marketing efforts for suggesting new releases, promotions, and special offers.</p>
+<p><strong>Customer Feedback Integration</strong>: Collect and analyze customer feedback for continuous improvement of the recommendation algorithm and book inventory.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bd9e7c6f-f665-42a3-a865-27d940c36ffb">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">¶</a></h2><p><strong>Project Significance</strong>: Addressing the lack of recommendation systems for Armenian book sellers.</p>
+<p><strong>Objectives Achievement</strong>: Increase sales, improve customer engagement, and enhance competitiveness in the Armenian book market.</p>
+<p><strong>API Enhancements</strong>: The FastAPI-based API provides robust functionality for interacting with the book database, updating book details, creating new entries, and fetching recommendations seamlessly. This integration contributes to a comprehensive book recommendation system for Bookinist and Zangak.</p>
+<p><strong>Model Enhancement</strong>: The Matrix Factorization Model provides personalized recommendations based on titles, authors, and genres, contributing to a more robust and tailored book recommendation system.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=bf960fa7-cd3c-41d4-8eda-096792b49766">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Package-Accessibility">Package Accessibility<a class="anchor-link" href="#Package-Accessibility">¶</a></h2><p>Our Book Recommendation Package is readily accessible on the Python Package Index (PyPI).</p>
+<p>Visit <a href="https://pypi.org/project/bookrecs/1.1.3/">https://pypi.org/project/bookrecs/1.1.3/</a> to explore the features and integrate it into your applications.</p>
+</div>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=8504af9f-f7d3-4e80-915e-b47605794f14">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h1 id="Thank-You!">Thank You!<a class="anchor-link" href="#Thank-You!">¶</a></h1>
 </div>
 </div>
 </div>
