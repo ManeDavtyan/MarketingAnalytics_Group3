@@ -28,10 +28,10 @@
 
 # MODEL
 
+
 # from bookrec.model import model
 # db_path = './/BookStore.db'
 # title_to_recommend = input("Enter a book title: ")
 # recommendations = model.get_combined_recommendations(title_to_recommend, db_path)
 #
 # print(recommendations)
-
